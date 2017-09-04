@@ -69,7 +69,7 @@ class DesknetsApi {
       Promise.reject(new Error(e));
     });
 
-    await page.goto(`https://${this.host}/cgi-bin/dneo/dneo.cgi?cmd=plantweekgrp&log=on#cmd=plantdaygrp&pid=2&date=${params.date}`);
+    await page.goto(`https://${this.host}/cgi-bin/dneo/dneo.cgi?cmd=plantweekgrp&log=on#cmd=plantdaygrp&pid=2&date=${params.date}`, {waitUntil: 'networkidle'});
     await page.waitForSelector(`.jplant-cal-time-line[data-target='${params.place}']`);
     const result =  await page.evaluate(params => {
       const boxes = document.querySelectorAll(`.jplant-cal-time-line[data-target='${params.place}'] .cal-h-box-data div .cal-item-box`);
@@ -99,7 +99,7 @@ class DesknetsApi {
     // ログイン
     await this.login(page);
 
-    await page.goto(`https://${this.host}/cgi-bin/dneo/dneo.cgi?cmd=plantweekgrp&log=on#cmd=plantadd&date=${params.startD}&enddate=${params.endD}&id=${params.place}`);
+    await page.goto(`https://${this.host}/cgi-bin/dneo/dneo.cgi?cmd=plantweekgrp&log=on#cmd=plantadd&date=${params.startD}&enddate=${params.endD}&id=${params.place}`, {waitUntil: 'networkidle'});
     await page.waitForSelector('.co-timepicker-hour');
     // 日時
     await page.evaluate(params => {

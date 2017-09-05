@@ -10,6 +10,8 @@ const DesknetsApi = require('./desknets_api.js');
     password: process.env.PASSWORD
   });
 
+  await desknets_api.login().catch(e => console.error(e));
+
   // 設備予約確認
   const before = await desknets_api.search_room({
     place: '2', // 7階会議室
@@ -39,4 +41,7 @@ const DesknetsApi = require('./desknets_api.js');
   });
 
   console.log(after);
+
+  // 終了
+  await desknets_api.close();
 })();

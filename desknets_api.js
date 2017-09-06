@@ -61,7 +61,7 @@ class DesknetsApi {
       this.browser.close();
       return Promise.reject(error);
     }
-    Promise.resolve();
+    return Promise.resolve();
   }
 
   /**

@@ -54,7 +54,7 @@ class DesknetsApi {
     await this.page.type(this.password);
     await this.page.click('#login-btn');
     // ログインエラー
-    let error = await this.page.waitForSelector('h3.co-message', {timeout: 1500}).then(async () => {
+    const error = await this.page.waitForSelector('h3.co-message', {timeout: 1500}).then(async () => {
       return await this.page.evaluate(() => document.querySelector('h3.co-message').textContent);
     }).catch(() => null);
     if (error) {

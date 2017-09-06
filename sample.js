@@ -10,6 +10,7 @@ const DesknetsApi = require('./desknets_api.js');
     password: process.env.PASSWORD
   });
 
+  // ログイン
   await desknets_api.login().catch(e => console.error(e));
 
   // 設備予約確認

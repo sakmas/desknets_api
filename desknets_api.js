@@ -17,6 +17,7 @@ class DesknetsApi {
     this.host = params.host;
     this.id = params.id;
     this.password = params.password;
+    this.isLoggedIn = false;
   }
 
   /**
@@ -61,6 +62,7 @@ class DesknetsApi {
       this.browser.close();
       return Promise.reject(error);
     }
+    this.isLoggedIn = true;
     return Promise.resolve();
   }
 
@@ -125,8 +127,9 @@ class DesknetsApi {
    * @public
    **/
   async close() {
-    if (this.browser) {
+    if (this.isLoggedIn) {
       this.browser.close();
+      this.isLoggedIn = false;
     }
   }
 }
